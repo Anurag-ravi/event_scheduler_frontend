@@ -3,9 +3,42 @@ import ToogleSwitch from "../components/ToogleSwitch";
 import iitg from "../assets/iitg.jpg";
 import logo from "../assets/logo.svg";
 import microsoft from "../assets/microsoft.svg";
+import MicrosoftLogin from "react-microsoft-login";
+import axios from "axios";
+axios.defaults.xsrfHeaderName = "x-csrftoken";
+axios.defaults.xsrfCookieName = "csrftoken";
+axios.defaults.withCredentials = true;
 
 const Login = () => {
   const [currLogin, setcurrLogin] = useState("user");
+
+  const authHandler = (error, authData, msalInstance) => {
+    // console.log(error, authData, msalInstance);
+    if (!error) {
+      console.log(authData.accessToken);
+      axios({
+        method: "post",
+        url: "http://localhost:8000/apiLogin/",
+        data: {
+          token: authData.accessToken,
+        },
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => console.log(err));
+    } else console.error(error);
+  };
+  const demo = () => {
+    axios({
+      method: "get",
+      url: "http://localhost:8000/profile",
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -66,11 +99,16 @@ const Login = () => {
               </div>
               <div
                 className="w-full h-10 rounded-md my-2.5 flex flex-row justify-center"
-                style={{ backgroundColor: "#2d3748" }}
+                style={{ backgroundColor: "#2F2F2F" }}
               >
-                <img src={microsoft} alt="" />
-                <p className="text-white py-1.5 pl-1"> sign-in with outlook</p>
+                <MicrosoftLogin
+                  clientId="51604322-ac4b-4b45-a5d1-d6a8f737038f"
+                  authCallback={authHandler}
+                  buttonTheme="dark"
+                  className="rounded-md h-10"
+                />
               </div>
+              {/* <button onClick={demo}>abcd</button> */}
             </div>
           </div>
         </div>

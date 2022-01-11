@@ -1,10 +1,14 @@
 import "./App.css";
-import Login from "./pages/Login";
+import EventCard from "./components/EventCard";
+// import Login from "./pages/Login";
 
 function App() {
   return (
     <>
-      <Login />
+      {/* <Login /> */}
+      <div className="flex flex-row justify-center pt-20">
+        <EventCard />
+      </div>
     </>
   );
 }

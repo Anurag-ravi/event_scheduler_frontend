@@ -15,3 +15,40 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.eventClubLogo {
+  width:55px;
+  height:55px;
+  position:relative;
+  top:-232px;
+  left:8px;
+}
+.timeStamp {
+  position:relative;
+  top:-120px;
+  left:8px;
+}
+
+.date1 {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: semibold;
+  line-height: 15px;
+  height: 22px;
+  color:white;
+  border-left-width: 3px;
+  border-right-width: 3px;
+  border-top-width: 3px;
+  border-bottom-width: 1.5px;
+}
+.date2 {
+  display: inline-block;
+  font-size: 32px;
+  line-height: 26px;
+  height: 35px;
+  color:white;
+  border-left-width: 3px;
+  border-right-width: 3px;
+  border-top-width: 1.5px;
+  border-bottom-width: 3px;
+}

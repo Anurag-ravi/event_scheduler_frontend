@@ -52,3 +52,57 @@ code {
   border-top-width: 1.5px;
   border-bottom-width: 3px;
 }
+
+.textDesc {
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 4; /* number of lines to show */
+           line-clamp: 4; 
+   -webkit-box-orient: vertical;
+}
+
+.eventDetailImg {
+  width:1080px;
+  height:500px;
+  object-fit: cover;
+}
+
+.timeStamp2 {
+  position:relative;
+  width:130px;
+  top:-155px;
+  left:935px;
+}
+
+.date11 {
+  display: inline-block;
+  font-size: 35px;
+  font-weight: semibold;
+  line-height: 30px;
+  height: 40px;
+  color:white;
+  border-left-width: 5px;
+  border-right-width: 5px;
+  border-top-width: 5px;
+  border-bottom-width: 2.5px;
+  color:#F7D9FF;
+}
+.date22 {
+  display: inline-block;
+  font-size: 100px;
+  line-height: 80px;
+  height: 100px;
+  color:white;
+  border-left-width: 5px;
+  border-right-width: 5px;
+  border-top-width: 2.5px;
+  border-bottom-width: 5px;
+  color:#F7D9FF;
+}
+
+.nameStamp{
+  position:relative;
+  top:-300px;
+  left:20px;
+}

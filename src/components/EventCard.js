@@ -4,9 +4,9 @@ import swc from "../assets/codingclub.png"
 
 const EventCard = () => {
     return (
-        <div className='flex flex-row shadow-md rounded-2xl' style={ {width:734} }>
-            <div className='rounded-tl-2xl rounded-bl-2xl' style={ {height:240,width:400} }>
-                <img src={event} alt="" className='rounded-tl-2xl rounded-bl-2xl h-60 object-fill' style={ {width:400} }/>
+        <div className='grid grid-cols-1 sm:grid-cols-2 shadow-lg rounded-2xl w-11/12 md:w-10/12 lg:w-7/12 h-60'>
+            <div className='rounded-tl-2xl rounded-tr-2xl sm:rounded-bl-2xl sm:rounded-tr-none'>
+                <img src={event} alt="" className='rounded-tl-2xl rounded-tr-2xl sm:rounded-bl-2xl sm:rounded-tr-none w-full h-60 object-fill'/>
                 <img src={swc} alt="" className='rounded-full eventClubLogo cursor-pointer hover:scale-105 duration-300'/>
                 <div className="flex flex-col w-14 timeStamp">
                     <div className='border-white rounded-t-lg text-center date1'>
@@ -15,7 +15,7 @@ const EventCard = () => {
                         10</div>
                 </div>
             </div>
-            <div className='w-80 flex flex-col p-4' style={ {height:240} }>
+            <div className='flex flex-col px-4 py-2 sm:py-4 relative -top-28 rounded-b-2xl shadow-lg sm:shadow-none sm:top-0'>
                 <div className="flex flex-row justify-between">
                     <div className="flex flex-col">
                         <div className='text-lg font-medium cursor-pointer hover:scale-105 duration-300'>Headline</div>

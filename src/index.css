@@ -63,25 +63,40 @@ code {
 }
 
 .eventDetailImg {
-  width:1080px;
-  height:500px;
+  width:100%;
   object-fit: cover;
 }
 
 .timeStamp2 {
   position:relative;
-  width:130px;
-  top:-155px;
-  left:935px;
+  width:12%;
+  top: -65px;
+  left:calc(86.5%);
+}
+.timeStamp2sm {
+  position:relative;
+  width:12%;
+  top: -97px;
+  left:calc(87%);
+}
+.timeStamp2md {
+  position:relative;
+  width:12%;
+  top: -110px;
+  left:calc(87%);
+}
+.timeStamp2lg {
+  position:relative;
+  width:12.5%;
+  top: -120px;
+  left:calc(86.5%);
 }
 
 .date11 {
   display: inline-block;
-  font-size: 35px;
+  font-size: 70%;
   font-weight: semibold;
-  line-height: 30px;
-  height: 40px;
-  color:white;
+  line-height: 100%;
   border-left-width: 5px;
   border-right-width: 5px;
   border-top-width: 5px;
@@ -90,10 +105,8 @@ code {
 }
 .date22 {
   display: inline-block;
-  font-size: 100px;
-  line-height: 80px;
-  height: 100px;
-  color:white;
+  font-size: 200%;
+  line-height: 100%;
   border-left-width: 5px;
   border-right-width: 5px;
   border-top-width: 2.5px;
@@ -103,6 +116,56 @@ code {
 
 .nameStamp{
   position:relative;
-  top:-300px;
-  left:20px;
+  bottom: 165px;
+  left:10px;
+}
+.nameStampsm{
+  position:relative;
+  bottom: 200px;
+  left:15px;
+}
+.nameStampmd{
+  position:relative;
+  bottom: 240px;
+  left:15px;
+}
+.nameStamplg{
+  position:relative;
+  bottom: 270px;
+  left:15px;
+}
+
+.date11sm{
+  font-size: 120%;
+  line-height:110%;
+  border-bottom-width: 5px;
+}
+.date11md{
+  font-size: 140%;
+  line-height:110%;
+  border-bottom-width: 5px;
+}
+.date11lg{
+  font-size: 150%;
+  line-height:110%;
+  border-bottom-width: 5px;
+}
+.date22sm{
+  font-size: 380%;
+  line-height: 100%;
+  position: relative;
+  top:-8px;
+  border-top-width: 0px;
+}
+.date22md{
+  font-size: 450%;
+  line-height: 100%;
+  position: relative;
+  top:-10px;
+  border-top-width: 0px;
+}
+.date22lg{
+  font-size: 500%;
+  line-height: 100%;
+  border-top-width: 0px;
 }

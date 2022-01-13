@@ -1,5 +1,5 @@
 import "./App.css";
-import EventCard from "./components/EventCard";
+// import EventCard from "./components/EventCard";
 import EventDetail from "./pages/EventDetail";
 // import Login from "./pages/Login";
 

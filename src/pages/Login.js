@@ -18,7 +18,7 @@ const Login = () => {
       console.log(authData.accessToken);
       axios({
         method: "post",
-        url: "http://localhost:8000/apiLogin/",
+        url: "https://swc.iitg.ac.in/event-scheduler/apiLogin/",
         data: {
           token: authData.accessToken,
         },
@@ -32,7 +32,7 @@ const Login = () => {
   const demo = () => {
     axios({
       method: "get",
-      url: "http://localhost:8000/profile",
+      url: "https://swc.iitg.ac.in/event-scheduler/profile",
     })
       .then((res) => {
         console.log(res);
@@ -85,8 +85,8 @@ const Login = () => {
                 />
                 <p className="self-center text-sm">Remember me</p>
                 <p
-                  className="text-sm self-center absolute text-blue-600 cursor-pointer"
-                  style={{ right: "13.9%" }}
+                  className="text-sm self-center relative text-blue-600 cursor-pointer"
+                  style={{ right: "-40%" }}
                 >
                   Forgot password?
                 </p>
@@ -102,7 +102,8 @@ const Login = () => {
                 style={{ backgroundColor: "#2F2F2F" }}
               >
                 <MicrosoftLogin
-                  clientId="51604322-ac4b-4b45-a5d1-d6a8f737038f"
+                  // clientId="51604322-ac4b-4b45-a5d1-d6a8f737038f"
+                  clientId="df40590b-2823-4124-8a75-7484dfbca404"
                   authCallback={authHandler}
                   buttonTheme="dark"
                   className="rounded-md h-10"

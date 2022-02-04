@@ -66,6 +66,11 @@ code {
   width:100%;
   object-fit: cover;
 }
+.eventCreationImg {
+  height: 50%;
+  object-fit: cover;
+}
+
 
 .timeStamp2 {
   position:relative;
@@ -135,6 +140,51 @@ code {
   left:15px;
 }
 
+.changeImage{
+  color: white;
+  position:relative;
+  bottom: 165px;
+  margin: 0 auto;
+  font-size: 16px;
+  transition: transform .5s;
+}
+.changeImagesm{
+  color: white;
+  position:relative;
+  bottom: 200px;
+  margin: 0 auto;
+  font-size: 32px;
+  transition: transform .5s;
+}
+.changeImagemd{
+  color: white;
+  position:relative;
+  bottom: 240px;
+  margin: 0 auto;
+  font-size: 48px;
+  transition: transform .5s;
+}
+.changeImagelg{
+  color: white;
+  position:relative;
+  margin: 0 auto;
+  bottom: 270px;
+  font-size: 64px;
+  transition: transform .5s;
+}
+.changeImage:hover {
+  transform: scale(1.2); 
+}
+.changeImagesm:hover {
+  transform: scale(1.2); 
+}
+.changeImagemd:hover {
+  transform: scale(1.2); 
+}
+.changeImagelg:hover {
+  transform: scale(1.2); 
+}
+
 .date11sm{
   font-size: 120%;
   line-height:110%;
@@ -168,4 +218,13 @@ code {
   font-size: 500%;
   line-height: 100%;
   border-top-width: 0px;
+}
+.copylink{
+  background-color: #FEFBFF;
+  border-radius: 8px;
+  padding-right: 25px;
+  padding-left: 25px;
+  height: 35px;
+  border:  1px solid rgba(0, 0, 0, 0.25);
+  
 }

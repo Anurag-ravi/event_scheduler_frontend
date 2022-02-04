@@ -2,7 +2,7 @@ import "./App.css";
 // import EventCard from "./components/EventCard";
 import EventDetail from "./pages/EventDetail";
 // import Login from "./pages/Login";
-
+import EventUpdation from "./pages/EventUpdation";
 function App() {
   return (
     <>
@@ -10,7 +10,8 @@ function App() {
       {/* <div className="flex flex-row justify-center pt-20">
         <EventCard />
       </div> */}
-      <EventDetail />
+      {/* <EventDetail /> */}
+      <EventUpdation />
     </>
   );
 }

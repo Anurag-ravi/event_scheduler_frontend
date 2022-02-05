@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactMapGL,{Marker} from "react-map-gl";
 import { useState } from 'react';
-import locationmarker from "../assets/locationmarker.png"
+import locationmarker from "../../assets/locationmarker.png"
 function EventLocation(props) {
     let [viewport, setViewport] = useState({
         width: 1000,

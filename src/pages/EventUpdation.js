@@ -1,8 +1,8 @@
 import React from 'react'
 import swc from "../assets/swc.png"
 
-import ClubNavbar from '../components/ClubNavbar'
-import FullWidthTabs from '../components/Tabs'
+import ClubNavbar from '../components/Event_Update/ClubNavbar'
+import FullWidthTabs from '../components/Event_Update/Tabs'
 const EventUpdation = () => {
     return(
         <>

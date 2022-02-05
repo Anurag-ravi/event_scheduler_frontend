@@ -10,17 +10,18 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.24.0",
+    "jwt-decode": "^3.1.2",
     "mapbox-gl": "^2.6.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-map-gl": "^6.1.19",
     "react-microsoft-login": "^1.15.0",
-<<<<<<< Updated upstream
-    "react-scripts": "^5.0.0",
-=======
+    "react-redux": "^7.2.6",
+    "react-router": "^6.2.1",
+    "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "react-swipeable-views": "^0.14.0",
->>>>>>> Stashed changes
+    "redux": "^4.1.2",
     "web-vitals": "^2.1.2"
   },
   "scripts": {

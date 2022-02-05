@@ -1,5 +1,5 @@
 import React from 'react'
-import swc from "../assets/swc.png"
+import swc from "../../assets/swc.png"
 const ClubNavbar = () => {
     return(
         <div className='flex flex-row justify-between'>

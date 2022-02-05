@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import ToogleSwitch from "../components/ToogleSwitch";
+import ToogleSwitch from "../components/Login/ToogleSwitch";
 import iitg from "../assets/iitg.jpg";
 import logo from "../assets/logo.svg";
-import microsoft from "../assets/microsoft.svg";
 import MicrosoftLogin from "react-microsoft-login";
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { profile, signin } from "../redux/actions/"
+import jwt_decode from "jwt-decode";
+
+
 import axios from "axios";
 axios.defaults.xsrfHeaderName = "x-csrftoken";
 axios.defaults.xsrfCookieName = "csrftoken";
@@ -12,10 +17,12 @@ axios.defaults.withCredentials = true;
 const Login = () => {
   const [currLogin, setcurrLogin] = useState("user");
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const authHandler = (error, authData, msalInstance) => {
     // console.log(error, authData, msalInstance);
     if (!error) {
-      console.log(authData.accessToken);
+      // console.log(authData.accessToken);
       axios({
         method: "post",
         url: "https://swc.iitg.ac.in/event-scheduler/apiLogin/",
@@ -24,7 +31,15 @@ const Login = () => {
         },
       })
         .then((res) => {
-          console.log(res);
+          // console.log(res.data["jwt"]);
+          const decoded = jwt_decode(res.data["jwt"]);
+          let data = {
+            access:res.data["jwt"],
+            club: decoded["club_status"]
+          }
+          dispatch(signin(data));
+          dispatch(profile(decoded));
+          navigate("/", { replace: true });
         })
         .catch((err) => console.log(err));
     } else console.error(error);
@@ -102,8 +117,8 @@ const Login = () => {
                 style={{ backgroundColor: "#2F2F2F" }}
               >
                 <MicrosoftLogin
-                  // clientId="51604322-ac4b-4b45-a5d1-d6a8f737038f"
-                  clientId="df40590b-2823-4124-8a75-7484dfbca404"
+                  clientId="51604322-ac4b-4b45-a5d1-d6a8f737038f"
+                  // clientId="df40590b-2823-4124-8a75-7484dfbca404"
                   authCallback={authHandler}
                   buttonTheme="dark"
                   className="rounded-md h-10"

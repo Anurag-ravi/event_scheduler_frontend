@@ -1,5 +1,5 @@
 import React from 'react'
-import eventcreation from "../assets/eventcreation.png"
+import eventcreation from "../../assets/eventcreation.png"
 import Dropdown from './Dropdown'
 
 const DetailsTab = () => {

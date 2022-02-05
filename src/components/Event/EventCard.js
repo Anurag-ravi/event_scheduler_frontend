@@ -1,6 +1,6 @@
 import React from 'react'
-import event from "../assets/event.jpeg"
-import swc from "../assets/codingclub.png"
+import event from "../../assets/event.jpeg"
+import swc from "../../assets/codingclub.png"
 
 const EventCard = () => {
     return (

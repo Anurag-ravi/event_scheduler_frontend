@@ -28,15 +28,17 @@ const NavItemHeader = props => {
   };
 
   return (
-    <>
-      <button
-        className='flex flex-col m-4 px-8 py-4 rounded-full hover:bg-[#DFE1FA]'
-        onClick={onExpandChange}
-      >
+    <><div onClick={onExpandChange}>
+
+      <NavLink
+        exact
+        to={headerToPath}
+        className='flex flex-col mx-4 my-2 px-8 py-4 rounded-full hover:bg-[#DFE1FA]'
+        >
         
-        <span className='flex flex-col' >{label}</span>
-        
-      </button>
+        <span className='flex flex-col ' >{label}</span>
+      </NavLink>
+        </div>
 
       {expanded && (
         

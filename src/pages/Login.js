@@ -44,16 +44,6 @@ const Login = () => {
         .catch((err) => console.log(err));
     } else console.error(error);
   };
-  const demo = () => {
-    axios({
-      method: "get",
-      url: "https://swc.iitg.ac.in/event-scheduler/profile",
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
-  };
   return (
     <>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">

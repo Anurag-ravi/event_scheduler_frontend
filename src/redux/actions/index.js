@@ -18,3 +18,9 @@ export const profile = (data) => {
         payload: data
     }
 }
+export const refresh_token = (data) => {
+    return {
+        type: actions.Refresh,
+        payload: data
+    }
+}

@@ -27,7 +27,7 @@ const Layout = props => {
           }
         <Sidebar />
 
-          <div>{children}
+          <div className='ml-[30rem]'>{children}
           </div></main>
         <footer ></footer>
       </div> : <Login/>

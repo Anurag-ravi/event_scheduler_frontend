@@ -15,7 +15,7 @@ const NavItem = props => {
     <NavLink
       exact
       to={to}
-      className='flex flex-col mx-4 my-2 px-8 py-4 rounded-full hover:bg-blue-300'
+      className='flex flex-col mx-4 my-2 px-8 py-4 rounded-full hover:bg-[#DFE1FA]'
     >
       
       <span className='flex flex-col ' >{label}</span>

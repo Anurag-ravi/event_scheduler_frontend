@@ -3,6 +3,8 @@ import face from '../../assets/XL.png'
 import Reminders from '../../components/Misc/Reminders';
 import { useSelector } from "react-redux";
 import Notify from './notifications/notify';
+import noti1 from "../../assets/noti1.svg";
+import noti2 from "../../assets/noti2.svg";
 
 
 
@@ -19,20 +21,28 @@ function Home(props) {
 
     setNotific(Notific => !Notific);
     }
+    let time = new Date().getHours();
 
     const profile = useSelector(state => state.profile);
 
     return (
-        <div className='mt-4'>
+        <div className='mt-4 h-max'>
             <div className=''>
             <hr />
-            <div className='flex flex-row justify-between'>
-                <div>
-                    <h1>Good Morning,</h1>
-                    <p>{profile.name}</p>
+            <div className='flex flex-row justify-between w-[44rem]'>
+                <div className='flex flex-col justify-around pl-3'>
+                    <div className='text-2xl'>
+                        {
+                            time >= 6 && time < 12 ? 'Good Morning'
+                            : time >= 12 && time < 17 ? 'Good Afternoon'
+                            : time >= 17 && time < 21 ? 'Good Evening'
+                            : 'Good Night'
+                        }
+                    </div>
+                    <div className='text-2xl font-medium'>{profile.name}</div>
                 </div>
-                <div className='ml-96 flex flex-row'>
-                   <button onClick={Notification}>notify</button>
+                <div className='flex flex-row'>
+                   <img src={Notific ? noti2 : noti1} className="rounded-full shadow-xl hover:cursor-pointer hover:shadow-inner self-center p-1.5" onClick={Notification}/>
                    <img src={face} alt="" />
                 </div>
 
@@ -41,20 +51,11 @@ function Home(props) {
             </div>
 
             {!Notific && (
-                <div className='flex flex-col'>
+                <div className='flex flex-col pl-4'>
                 <div>
-                    <h1>Reminders</h1>
+                    <div className='text-4xl'>Reminders</div>
                 </div>
                 <div className='py-4'>
-                    <div className='flex flex-row rounded-md bg-gray-300 mb-2 ml-2'>
-                        <div className='rounded-full bg-blue-700 h-8 mr-2 mt-2 ml-2 w-4 p-1'>
-                            <h1>A</h1>
-                        </div>
-                        <div>
-                            <h1>Header</h1>
-                            <p>This is a Placeholder</p>
-                        </div>
-                    </div>
                     <Reminders />
                     <Reminders />
                     <Reminders />
@@ -71,7 +72,7 @@ function Home(props) {
             {console.log(Notific)}
             {Notific && (
                 <div>
-                <Notify ></Notify>
+                <Notify noti={Notification}/>
             </div>
             ) }
 

@@ -15,7 +15,7 @@ const NavItemHeader = props => {
     location.pathname.includes(headerToPath)
   );
   
-  const [style, setStyle] = useState('flex flex-col m-4 px-8 py-4 rounded-full hover:bg-blue-300')
+  const [style, setStyle] = useState('flex flex-col m-4 px-8 py-4 rounded-full hover:bg-[#DFE1FA]')
   const [searchField, setSearchField] = useState('')
   
   const [filteredData, setFilteredData] = useState(children)
@@ -30,7 +30,7 @@ const NavItemHeader = props => {
   return (
     <>
       <button
-        className='flex flex-col m-4 px-8 py-4 rounded-full hover:bg-blue-300'
+        className='flex flex-col m-4 px-8 py-4 rounded-full hover:bg-[#DFE1FA]'
         onClick={onExpandChange}
       >
         
@@ -40,7 +40,7 @@ const NavItemHeader = props => {
 
       {expanded && (
         
-        <div className='flex flex-col px-8 bg-blue-300 rounded-lg'>
+        <div className='flex flex-col px-8 bg-[#DFE1FA] rounded-lg'>
           <Search handleChange = {(e) => { 
             setSearchField(e.target.value)
             var arr = [];

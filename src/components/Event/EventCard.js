@@ -1,15 +1,40 @@
-import React from 'react'
+import React, {useState} from 'react'
 import event from "../../assets/event.jpeg"
 import swc from "../../assets/codingclub.png"
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import client from "../../axios"
+import { refresh_token } from '../../redux/actions';
 
 const EventCard = (props) => {
+    const dispatch = useDispatch();
+    const token = useSelector(state => state.user.accessToken);
+
     const id = useSelector(state => state.profile.profile_id);
     const item = props.item;
+    const event_id = item.id;
     const month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     let date = item.date.toString();
     let arr = date.split('-');
-    var rsvp = item.rsvp_users.includes(id)
+    const [rsvp, setrsvp] = useState(item.rsvp_users.includes(id));
+
+    const rsvpBtn = () => {
+        var url = ""
+        if(!rsvp){
+            url = "/rsvp/event/" + event_id;
+        } else {
+            url = "/unsubscribe/event/" + event_id;
+        }
+        client.get(url,{
+            headers : {
+              'Authorization':token
+            }
+        })
+        .then(res => {
+            if(res.headers['jwt']) {dispatch(refresh_token(res.headers['jwt']));}
+            setrsvp(!rsvp);
+        })
+        .catch(err=>alert(err))
+    }
     return (
         <div className='grid grid-cols-1 sm:grid-cols-2 shadow-lg rounded-2xl w-11/12 md:w-10/12 lg:w-full h-60 my-2'>
             <div className='rounded-tl-2xl rounded-tr-2xl sm:rounded-bl-2xl sm:rounded-tr-none'>
@@ -28,7 +53,7 @@ const EventCard = (props) => {
                         <div className='text-lg font-medium cursor-pointer hover:scale-105 duration-300'>{item.title}</div>
                         <div className='text-gray-500'>By {item.club_name}</div>
                     </div>
-                    <div className='text-white w-24 h-8 text-sm rounded-full text-center pt-1.5 font-normal self-center cursor-pointer hover:scale-105 duration-300' style={{backgroundColor:'#6750A4'}}>
+                    <div onClick={rsvpBtn} className='text-white w-24 h-8 text-sm rounded-full text-center pt-1.5 font-normal self-center cursor-pointer hover:scale-105 duration-300' style={{backgroundColor:'#6750A4'}}>
                         {rsvp ? 'Undo RSVP':'RSVP'}
                     </div>
                 </div>

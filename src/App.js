@@ -22,11 +22,24 @@ function App() {
 
         <Route path="/" exact element={<PrivateRoute><Home/></PrivateRoute>}></Route>
 
-        <Route path='/events' exact element={<PrivateRoute><Events/></PrivateRoute>} >
-                <Route path='/events/Alcher' exact element={<PrivateRoute><Alcher /></PrivateRoute>} />
-                <Route path='/events/Robotics' exact element={<PrivateRoute><Robotics /></PrivateRoute>} />
-                <Route path='/events/Swc' exact element={<PrivateRoute><Swc /></PrivateRoute>} />
-        </Route>
+        <Route path='/events' exact element={<PrivateRoute><Events/></PrivateRoute>} />
+                <Route path='/events/alcher' exact element={<PrivateRoute><Events /></PrivateRoute>} />
+                <Route path='/events/robotics' exact element={<PrivateRoute><Events /></PrivateRoute>} />
+                <Route path='/events/swc' exact element={<PrivateRoute><Events /></PrivateRoute>} />
+                <Route path='/events/coding' exact element={<PrivateRoute><Events /></PrivateRoute>} />
+                <Route path='/events/aero' exact element={<PrivateRoute><Events /></PrivateRoute>} />
+                <Route path='/events/astro' exact element={<PrivateRoute><Events /></PrivateRoute>} />
+                <Route path='/events/ca' exact element={<PrivateRoute><Events /></PrivateRoute>} />
+                <Route path='/events/ee' exact element={<PrivateRoute><Events /></PrivateRoute>} />
+                <Route path='/events/prakriti' exact element={<PrivateRoute><Events /></PrivateRoute>} />
+                <Route path='/events/fnc' exact element={<PrivateRoute><Events /></PrivateRoute>} />
+                <Route path='/events/ed' exact element={<PrivateRoute><Events /></PrivateRoute>} />
+                <Route path='/events/ug' exact element={<PrivateRoute><Events /></PrivateRoute>} />
+                <Route path='/events/techniche' exact element={<PrivateRoute><Events /></PrivateRoute>} />
+                <Route path='/events/sail' exact element={<PrivateRoute><Events /></PrivateRoute>} />
+                <Route path='/events/ai' exact element={<PrivateRoute><Events /></PrivateRoute>} />
+                <Route path='/events/ccd' exact element={<PrivateRoute><Events /></PrivateRoute>} />
+                <Route path='/events/other' exact element={<PrivateRoute><Events /></PrivateRoute>} />
 
         <Route path='/clubs' exact element={<PrivateRoute><Clubs /></PrivateRoute>} />
 

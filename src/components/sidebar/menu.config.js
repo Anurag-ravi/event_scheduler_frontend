@@ -12,71 +12,101 @@ export const sideMenu = [
         {
           label: 'Alcher',
           
-          to: 'Alcher',
+          to: 'alcher',
         },
         {
             label: 'Robotics',
             
-            to: 'Robotics',
+            to: 'robotics',
           },
         {
           label: 'Swc',
           
-          to: 'Swc',
+          to: 'swc',
           
         },
         {
-          label: 'Swc1',
+          label: 'Coding',
           
-          to: 'Swc1',
-          
-        },
-        {
-          label: 'Swc2',
-          
-          to: 'Swc2',
+          to: 'coding',
           
         },
         {
-          label: 'Swc3',
+          label: 'Aero',
           
-          to: 'Swc3',
-          
-        },
-        {
-          label: 'Swc4',
-          
-          to: 'Swc4',
+          to: 'aero',
           
         },
         {
-          label: 'Swc5',
+          label: 'Astro',
           
-          to: 'Swc5',
-          
-        },
-        {
-          label: 'Swc6',
-          
-          to: 'Swc6',
+          to: 'astro',
           
         },
         {
-          label: 'Swc7',
+          label: 'CA',
           
-          to: 'Swc7',
-          
-        },
-        {
-          label: 'Swc8',
-          
-          to: 'Swc8',
+          to: 'ca',
           
         },
         {
-          label: 'Swc9',
+          label: 'EE',
           
-          to: 'Swc9',
+          to: 'ee',
+          
+        },
+        {
+          label: 'Prakriti',
+          
+          to: 'prakriti',
+          
+        },
+        {
+          label: 'FNC',
+          
+          to: 'fnc',
+          
+        },
+        {
+          label: 'ED',
+          
+          to: 'ed',
+          
+        },
+        {
+          label: 'UG',
+          
+          to: 'ug',
+          
+        },
+        {
+          label: 'Techniche',
+          
+          to: 'techniche',
+          
+        },
+        {
+          label: 'Sail',
+          
+          to: 'sail',
+          
+        },
+        {
+          label: 'AI',
+          
+          to: 'ai',
+          
+        },
+        {
+          label: 'CCD',
+          
+          to: 'ccd',
+          
+        },
+        {
+          label: 'Other',
+          
+          to: 'other',
           
         },
       ],

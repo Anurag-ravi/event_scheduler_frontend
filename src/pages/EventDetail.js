@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState,useEffect} from 'react'
 import swc from "../assets/swc.png"
 import event from "../assets/event.jpeg"
 import location from "../assets/location.svg"
@@ -6,13 +6,38 @@ import facebook from "../assets/facebook.svg"
 import instagram from "../assets/instagram.svg"
 import linkedin from "../assets/linkedin.svg"
 import twitter from "../assets/twitter.svg"
+import { useNavigate,useParams } from 'react-router-dom';
+import { useDispatch,useSelector } from 'react-redux';
+import { refresh_token } from '../redux/actions';
+import client from "../axios"
 
 const EventDetail = () => {
+    let navigate = useNavigate()
+    const params = useParams();
+    const [eve, setevent] = useState({});
+    const dispatch = useDispatch();
+    const token = useSelector(state => state.user.accessToken);
+    const user = useSelector(state => state.profile);
+    useEffect(() => {
+        if(params["id"]){
+            client.get("/api/task/"+params["id"],{
+                headers : {
+                    'Authorization':token
+                }
+            })
+            .then(res => {
+                if(res.headers['jwt']) {dispatch(refresh_token(res.headers['jwt']));}
+                setevent(res.data);
+                console.log(res.data)
+            })
+            .catch(err=>console.log(err))
+        }
+      },[]);
     return (
         <div className='mx-auto justify-center py-2 lg:w-9/12 lg:px-0 w-full px-2'>
             {/* <====================== Navbar =====================> */}
             <div className='flex flex-row justify-between'>
-            <img src={swc} alt="" className='rounded-full w-16'/>
+            <img src={swc} alt="" className='rounded-full w-16 cursor-pointer' onClick={()=>navigate(-1)}/>
             <div className='flex flex-row'>
                 <div className="flex flex-col self-center">
                     <div className="text-2xl font-medium">Anurag Ravi</div>
@@ -31,7 +56,7 @@ const EventDetail = () => {
                         10</div>
                 </div>
                 <div className="flex flex-col nameStamp sm:nameStampsm md:nameStampmd lg:nameStamplg">
-                    <div className="font-medium text-2xl md:text-5xl lg:text-6xl text-white">Event Name</div>
+                    <div className="font-medium text-2xl md:text-5xl lg:text-6xl text-white">{eve["title"]}</div>
                     <div className="text-xl md:text-2xl lg:text-3xl pt-1 font-medium text-white" style={{color:'#F7D9FF'}}>Subtitle</div>
                     <div className="text-xl md:text-2xl lg:text-3xl pt-1 font-medium text-white" style={{color:'#F7D9FF'}}>Location</div>
                 </div>

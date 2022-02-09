@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Sidebar from './sidebar/sidebar';
 import {  useLocation } from 'react-router-dom';
 import Login from '../pages/Login';
@@ -8,13 +8,17 @@ import EventDetail from '../pages/EventDetail';
 const Layout = props => {
     const { children } = props;
     const location = useLocation();
-    const [path, setPath] = useState(location.pathname );
+    const [path, setPath] = useState(location.pathname.substring(1) );
     const auth = useSelector(state => state.user.islogged);
-    if(path === "/eventdetail"){
+    useEffect(() => {
+      setPath(location.pathname.substring(1))
+    }, [location.pathname]);
+    if(path.startsWith("eventdetail",0)){
       return(
         <EventDetail />
       )
     }
+    
     return (
       auth ? <div >
         <header ></header>

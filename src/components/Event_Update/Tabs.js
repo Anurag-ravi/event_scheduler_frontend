@@ -9,8 +9,11 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import eventcreation from "../../assets/eventcreation.png"
 import { red } from '@mui/material/colors';
-
+import Announcements from './Announcements';
 import DetailsTab from './DetailsTab';
+import Guests from './Guests';
+import Resources from './Resources';
+import Email from './Email';
 const dangerRed = red[400];
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -87,13 +90,19 @@ export default function FullWidthTabs() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-            
+            <Guests />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
             < DetailsTab />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Three
+            <Announcements />
+        </TabPanel>
+        <TabPanel value={value} index={3} dir={theme.direction}>
+            <Resources />
+        </TabPanel>
+        <TabPanel value={value} index={4} dir={theme.direction}>
+            <Email />
         </TabPanel>
       </SwipeableViews>
       </div>

@@ -12,8 +12,10 @@ import EventDetail from "./pages/EventDetail";
 function App() {
   return (
     <>
-      <Layout>
+      <Layout> 
       <Routes>
+      
+
         <Route path="/login" exact element={<Login/>}></Route>
 
         <Route path="/" exact element={<PrivateRoute><Home/></PrivateRoute>}></Route>

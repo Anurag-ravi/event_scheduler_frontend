@@ -24,3 +24,14 @@ export const refresh_token = (data) => {
         payload: data
     }
 }
+export const add_event = (data) => {
+    return {
+        type: actions.EventDetailAdd,
+        payload: data
+    }
+}
+export const rem_event = () => {
+    return {
+        type: actions.EventDetailRem
+    }
+}

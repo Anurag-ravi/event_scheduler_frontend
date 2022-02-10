@@ -8,7 +8,6 @@ import Home from "./pages/Home/home";
 import Events from "./pages/Events/events"
 import Clubs from "./pages/Clubs/clubs"
 import Others from "./pages/Others/others"
-import EventDetails from "./pages/Events/Details/EventDetails";
 import EventDetail from "./pages/EventDetail";
 function App() {
   return (

@@ -3,11 +3,12 @@ import event from "../../assets/event.jpeg"
 import swc from "../../assets/codingclub.png"
 import { useSelector,useDispatch } from "react-redux";
 import client from "../../axios"
-import { refresh_token } from '../../redux/actions';
-import { Link } from 'react-router-dom';
+import { add_event, refresh_token } from '../../redux/actions';
+import { useNavigate } from 'react-router-dom';
 
 const EventCard = (props) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const token = useSelector(state => state.user.accessToken);
 
     const id = useSelector(state => state.profile.profile_id);
@@ -17,6 +18,11 @@ const EventCard = (props) => {
     let date = item.date.toString();
     let arr = date.split('-');
     const [rsvp, setrsvp] = useState(item.rsvp_users.includes(id));
+
+    const eventDetail = () => {
+        dispatch(add_event(item));
+        navigate(`/eventdetail/${item.id}`)
+    }
 
     const rsvpBtn = () => {
         var url = ""
@@ -51,7 +57,7 @@ const EventCard = (props) => {
             <div className='flex flex-col px-4 py-2 sm:py-4 relative -top-28 rounded-b-2xl shadow-lg sm:shadow-none sm:top-0'>
                 <div className="flex flex-row justify-between">
                     <div className="flex flex-col">
-                        <Link to={`/eventdetail/${item.id}`}><div className='text-lg font-medium cursor-pointer hover:scale-105 duration-300'>{item.title}</div></Link>
+                        <div onClick={eventDetail} className='text-lg font-medium cursor-pointer hover:scale-105 duration-300'>{item.title}</div>
                         <div className='text-gray-500'>By {item.club_name}</div>
                     </div>
                     <div onClick={rsvpBtn} className='text-white w-24 h-8 text-sm rounded-full text-center pt-1.5 font-normal self-center cursor-pointer hover:scale-105 duration-300' style={{backgroundColor:'#6750A4'}}>

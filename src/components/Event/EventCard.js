@@ -67,7 +67,7 @@ const EventCard = (props) => {
                 <div className='text-sm py-5 textDesc'>
                     {item.description}
                 </div>
-                <div className='text-white w-14 h-8 text-sm rounded-lg text-center pt-1.5 self-end cursor-pointer hover:scale-105 duration-300 font-medium relative bottom-1' style={{backgroundColor:'#6FCF97'}}>
+                <div className='text-white w-14 h-8 text-sm rounded-lg text-center pt-1.5 self-end cursor-pointer hover:scale-105 duration-300 font-medium relative' style={{backgroundColor:'#6FCF97'}}>
                         Pay
                     </div>
             </div>

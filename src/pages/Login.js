@@ -37,18 +37,18 @@ const Login = () => {
             access:res.data["jwt"],
             club: decoded["club_status"]
           }
-          if(!decoded["Club_status"] && currLogin === "club"){
+          if(!decoded["club_status"] && currLogin === "club"){
             alert("Not Authorised as a Club User")
           }
-          else if(decoded["Club_status"] && currLogin === "user"){
+          else if(decoded["club_status"] && currLogin === "user"){
             alert("Please Login as Club Member")
           }
-          else if(!decoded["Club_status"] && currLogin === "user"){
+          else if(!decoded["club_status"] && currLogin === "user"){
             dispatch(signin(data));
             dispatch(profile(decoded));
             navigate("/", { replace: true });
           }
-          else if(decoded["Club_status"] && currLogin === "club"){
+          else if(decoded["club_status"] && currLogin === "club"){
             dispatch(signin(data));
             dispatch(profile(decoded));
             navigate("/", { replace: true });

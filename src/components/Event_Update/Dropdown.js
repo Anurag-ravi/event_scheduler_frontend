@@ -34,7 +34,7 @@ export default function Dropdown() {
             <MenuItem value="{latitude:'26.189222082129966',longitude:' 91.69983510906513'}">Manas Community Hall</MenuItem>
             <MenuItem value="{latitude:'26.192567184206197',longitude:'91.69900087357323'}">New SAC</MenuItem>
             <MenuItem value="{latitude:'26.192984090676713',longitude:'91.69801979691303'}">Stadium</MenuItem>
-            <MenuItem value="latitude:'26.191172644334124',longitude:'91.69926717782712'}">Swimming Pool</MenuItem> 
+            <MenuItem value="{latitude:'26.191172644334124',longitude:'91.69926717782712'}">Swimming Pool</MenuItem> 
         </Select>
       </FormControl>
     </Box>

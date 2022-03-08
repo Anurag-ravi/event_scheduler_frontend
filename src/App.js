@@ -12,13 +12,12 @@ import EventDetail from "./pages/EventDetail";
 function App() {
   return (
     <>
-      <Layout> 
+      <Layout>
       <Routes>
-      
 
         <Route path="/login" exact element={<Login/>}></Route>
 
-        <Route path="/" exact element={<PrivateRoute><Home/></PrivateRoute>}></Route>
+        <Route path="/" exact element={<PrivateRoute><Home /></PrivateRoute>}></Route>
 
         <Route path='/events' exact element={<PrivateRoute><Events/></PrivateRoute>} />
                 <Route path='/events/alcher' exact element={<PrivateRoute><Events /></PrivateRoute>} />

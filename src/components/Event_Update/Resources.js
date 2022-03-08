@@ -13,6 +13,7 @@ const Resources = () => {
         transform: 'translate(-50%, -50%)',
         width: 800,
         bgcolor: 'background.paper',
+        borderRadius:8,
         boxShadow: 24,
       };
     const [open, setOpen] = React.useState(false);

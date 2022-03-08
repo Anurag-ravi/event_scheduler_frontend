@@ -29,6 +29,7 @@ const Announcements = () => {
         left: '50%',
         transform: 'translate(-50%, -50%)',
         width: 800,
+        borderRadius:'8px',
         bgcolor: 'background.paper',
         boxShadow: 24,
       };
@@ -51,7 +52,7 @@ const Announcements = () => {
                 >
                     <Box sx={Modalstyle}>
                         <div className="flex flex-col">
-                            <div className="flex flex-row justify-between" style={{backgroundColor:'#C1C1FF'}}>
+                            <div className="flex flex-row justify-between" style={{backgroundColor:'#C1C1FF',borderRadius:'8px 8px 0 0'}}>
                                 <div style={{height:'65px',display:'flex',alignItems:'center',marginLeft:'20px'}}><Typography variant="h6" sx={{color:'white'}}>New Announcment</Typography></div>
                                  <div><IconButton aria-label="delete" onClick={handleClose}>
                                     <CloseIcon />

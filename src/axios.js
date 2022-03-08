@@ -10,3 +10,4 @@ const client = axios.create({
 });
 
 export default client;
+export const baseURL = "https://swc.iitg.ac.in";

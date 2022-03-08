@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import swc from "../assets/swc.png";
 import event from "../assets/event.jpeg";
+import pen from "../assets/pen.svg";
+import link from "../assets/link.svg";
 import location from "../assets/location.svg";
 import facebook from "../assets/facebook.svg";
 import instagram from "../assets/instagram.svg";
@@ -9,7 +11,8 @@ import twitter from "../assets/twitter.svg";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { refresh_token, rem_event } from "../redux/actions";
-import client from "../axios";
+import client, { baseURL } from "../axios";
+import ResourceCard from "../components/Event/ResourceCard";
 
 const EventDetail = () => {
   let navigate = useNavigate();
@@ -17,7 +20,7 @@ const EventDetail = () => {
   const user = useSelector((state) => state.profile);
   const item = useSelector((state) => state.event);
   const token = useSelector((state) => state.user.accessToken);
-
+  console.log(item.announcement);
   const month = [
     "Jan",
     "Feb",
@@ -36,8 +39,13 @@ const EventDetail = () => {
   let arr = date.split("-");
   const [rsvp, setrsvp] = useState(item.rsvp_users.includes(user.profile_id));
 
-  let announcement = item.announcements.toString();
-  let arr1 = announcement.split(",");
+  let announcement = Array.from(item.announcement.fixed);
+  let drive_links = Array.from(item.drive_links);
+  let resources = Array.from(item.resources_upload);
+  let img=false;
+  if(item.image!==null){
+    img=true;
+  }
   const rsvpBtn = () => {
     var url = "";
     if (!rsvp) {
@@ -60,7 +68,7 @@ const EventDetail = () => {
       .catch((err) => alert(err));
   };
   const goBack = () => {
-    dispatch(rem_event());
+    // dispatch(rem_event());
     navigate(-1);
   };
 
@@ -86,7 +94,7 @@ const EventDetail = () => {
       {/* <====================== Event image =====================> */}
       <div className="rounded w-full mt-4 items-center">
         <img
-          src={event}
+          src={img?baseURL+ item.image:event}
           alt=""
           className="rounded-2xl eventDetailImg shadow-xl"
         />
@@ -120,12 +128,14 @@ const EventDetail = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 justify-between px-2 mt-6 pb-20 relative -top-40 sm:-top-48 md:-top-56">
         <div className="px-6 md:border-r-4">
           <div>
-            <div className="text-4xl mb-4">Registration</div>
-            {arr1.map((item) => {
+            <div className="text-4xl mb-4">Announcements</div>
+            <ul>
+            {announcement.map((i) => {
               len++;
-              return <div key={item}>{item}</div>;
+              return <li key={i.id}>{i.announcement}</li>;
             })}
-            {len === 0 && <div>no announcements</div>}
+            {len === 0 && <li>no announcements</li>}
+            </ul>
           </div>
           <div
             className="rounded flex flex-row py-2 px-3 justify-between mt-5 w-full "
@@ -138,54 +148,30 @@ const EventDetail = () => {
                   {user.name}
                 </div>
                 <div className="text-sm sm:text-base mr-2">
-                  anurag.ravi@iitg.ac.in
+                {user.email}
                 </div>
               </div>
             </div>
             <div
               onClick={rsvpBtn}
-              className="text-white px-2 h-8 text-sm rounded-full text-center pt-1.5 font-normal self-center cursor-pointer hover:scale-105 duration-300"
-              style={{ backgroundColor: "#6750A4" }}
+              className="text-white px-4 h-10 text-base rounded-full text-center pt-1.5 font-normal self-center cursor-pointer hover:scale-105 duration-300 flex flex-row gap-1"
+              style={{ backgroundColor: "#3C55BF" }}
             >
+              <img src={pen} className="w-5 relative -top-1" />
+
               {rsvp ? "Unregister" : "Register"}
             </div>
           </div>
           <hr className="mt-5 w-full  " />
           <div className="text-3xl font-semibold mt-4">Recources</div>
-          <div
-            className="rounded flex flex-row py-2 px-3 justify-between mt-5 w-full "
-            style={{ backgroundColor: "#F2F2F9" }}
-          >
-            <div className="flex flex-row justify-start">
-              <div className="flex flex-col self-center">
-                <div className="text-lg sm:text-xl font-medium">Header</div>
-                <div className="mr-2">this is subtitle</div>
-              </div>
-            </div>
-            <div
-              className="text-white px-2 h-8 text-sm rounded-full text-center pt-1.5 font-normal self-center cursor-pointer hover:scale-105 duration-300"
-              style={{ backgroundColor: "#6750A4" }}
-            >
-              Download
-            </div>
-          </div>
-          <div
-            className="rounded flex flex-row py-2 px-3 justify-between mt-5 w-full "
-            style={{ backgroundColor: "#F2F2F9" }}
-          >
-            <div className="flex flex-row justify-start">
-              <div className="flex flex-col self-center">
-                <div className="text-lg sm:text-xl font-medium">Header</div>
-                <div className="mr-2">this is subtitle</div>
-              </div>
-            </div>
-            <div
-              className="text-white px-2 h-8 text-sm rounded-full text-center pt-1.5 font-normal self-center cursor-pointer hover:scale-105 duration-300"
-              style={{ backgroundColor: "#6750A4" }}
-            >
-              Open Link
-            </div>
-          </div>
+          {resources.map((i) => {
+              len++;
+              return <ResourceCard key={i.id} resource={i} type="resource"/>;
+            })}
+          {drive_links.map((i) => {
+              len++;
+              return <ResourceCard key={i.id} resource={i} type="drive"/>;
+            })}
         </div>
         <div className="px-6 ">
           <div
@@ -221,8 +207,9 @@ const EventDetail = () => {
           <hr className="mt-5 w-full  " />
           <div className="flex flex-row justify-between mt-4 mb-2 w-full ">
             <div className="text-3xl font-semibold">Share</div>
-            <div className="rounded-md self-center border-2 border-gray-400 px-5 text-gray-400 hover:bg-gray-100 cursor-pointer">
+            <div className="rounded-md self-center border-2 border-gray-400 px-5 text-gray-400 hover:bg-gray-100 cursor-pointer flex flex-row gap-1">
               Copy Link
+              <img src={pen} className="w-5 relative -top-1 text-gray-400" />
             </div>
           </div>
           <div className="flex flex-row justify-between mt-4 w-full ">

@@ -1,22 +1,64 @@
 import * as actions from '../actions/actionTypes'
 
 const event = {
-    announcements: "a,b,c,d",
-    author: 0,
-    club_name: "Club Name",
-    date: "2022-01-12",
-    deadline: "2022-01-13",
-    description: "Description",
     id: 0,
-    remainder: "Daily",
-    remainder_date: "2022-01-28",
-    remainder_time: "04:44:00",
-    resources_upload: null,
-    rsvp_users: [],
-    time_from: "00:00:00",
-    time_to: "00:00:00",
-    title: "Event Title",
-}
+    club_name: "Club",
+    title: "title",
+    subtitle: "",
+    description: "description",
+    image: null,
+    date: "2022-02-12",
+    deadline: "2022-02-12",
+    time_from: "15:42:37.071718",
+    time_to: "15:42:37.071718",
+    remainder: "None",
+    remainder_date: "2022-02-12",
+    remainder_time: "15:42:37.072713",
+    guests: [],
+    location: {
+      "offline": {
+        "latitude": "",
+        "longitude": ""
+      },
+      "online": {
+        "meet_url": "",
+        "room_id": "",
+        "password": ""
+      }
+    },
+    announcement: {
+      "fixed": [],
+      "dynamic": []
+    },
+    resources_upload: [],
+    drive_links: [],
+    payment: {
+      "paid": false,
+      "metadata": {
+        "price": 0,
+        "link": ""
+      }
+    },
+    emails: {
+      "registration": {
+        "to": [],
+        "sub": "",
+        "body": ""
+      },
+      "scheduled": []
+    },
+    page_view: {},
+    feedback: {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": []
+    },
+    host: [],
+    speaker: [],
+    rsvp_users: []
+  }
 
 const eventDetailReducer = (state=event,action) => {
     switch(action.type){
@@ -31,3 +73,62 @@ const eventDetailReducer = (state=event,action) => {
 }
 
 export default eventDetailReducer;
+export const base_event =  {
+  id: 0,
+  club_name: "Club",
+  title: "title",
+  subtitle: "",
+  description: "description",
+  image: null,
+  date: "2022-02-12",
+  deadline: "2022-02-12",
+  time_from: "15:42:37.071718",
+  time_to: "15:42:37.071718",
+  remainder: "None",
+  remainder_date: "2022-02-12",
+  remainder_time: "15:42:37.072713",
+  guests: [],
+  location: {
+    "offline": {
+      "latitude": "",
+      "longitude": ""
+    },
+    "online": {
+      "meet_url": "",
+      "room_id": "",
+      "password": ""
+    }
+  },
+  announcement: {
+    "fixed": [],
+    "dynamic": []
+  },
+  resources_upload: [],
+  drive_links: [],
+  payment: {
+    "paid": false,
+    "metadata": {
+      "price": 0,
+      "link": ""
+    }
+  },
+  emails: {
+    "registration": {
+      "to": [],
+      "sub": "",
+      "body": ""
+    },
+    "scheduled": []
+  },
+  page_view: {},
+  feedback: {
+    "1": [],
+    "2": [],
+    "3": [],
+    "4": [],
+    "5": []
+  },
+  host: [],
+  speaker: [],
+  rsvp_users: []
+};

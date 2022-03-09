@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import swc from "../assets/swc.png";
-import event from "../assets/event.jpeg";
+import event_img from "../assets/event.jpeg";
 import pen from "../assets/pen.svg";
 import link from "../assets/link.svg";
 import location from "../assets/location.svg";
@@ -13,14 +13,33 @@ import { useDispatch, useSelector } from "react-redux";
 import { refresh_token, rem_event } from "../redux/actions";
 import client, { baseURL } from "../axios";
 import ResourceCard from "../components/Event/ResourceCard";
+import { base_event } from "../redux/reducers/eventDetailReducer";
 
 const EventDetail = () => {
+  let  { event_id }  = useParams();
+  const [event, setEvent] = useState(base_event)
+  const [rsvp, setrsvp] = useState(false);
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.profile);
-  const item = useSelector((state) => state.event);
   const token = useSelector((state) => state.user.accessToken);
-  console.log(item.announcement);
+  useEffect(() => {
+    if(typeof(event_id) !== 'undefined'){
+      client.get("/api/task/"+event_id+"/",{
+        headers : {
+          'Authorization':token
+        }
+      })
+      .then(res => {
+        if(res.headers['jwt']) {dispatch(refresh_token(res.headers['jwt']));}
+        setEvent(res.data);
+        console.log(res.data);
+        setrsvp(res.data.rsvp_users.includes(user.profile_id))
+      })
+      .catch(err=>console.log(err))
+    }
+  }, [])
+  
   const month = [
     "Jan",
     "Feb",
@@ -35,23 +54,13 @@ const EventDetail = () => {
     "Nov",
     "Dec",
   ];
-  let date = item.date.toString();
-  let arr = date.split("-");
-  const [rsvp, setrsvp] = useState(item.rsvp_users.includes(user.profile_id));
 
-  let announcement = Array.from(item.announcement.fixed);
-  let drive_links = Array.from(item.drive_links);
-  let resources = Array.from(item.resources_upload);
-  let img=false;
-  if(item.image!==null){
-    img=true;
-  }
   const rsvpBtn = () => {
     var url = "";
     if (!rsvp) {
-      url = "/rsvp/event/" + item.id;
+      url = "/rsvp/event/" + event.id;
     } else {
-      url = "/unsubscribe/event/" + item.id;
+      url = "/unsubscribe/event/" + event.id;
     }
     client
       .get(url, {
@@ -68,7 +77,7 @@ const EventDetail = () => {
       .catch((err) => alert(err));
   };
   const goBack = () => {
-    // dispatch(rem_event());
+    dispatch(rem_event());
     navigate(-1);
   };
 
@@ -86,7 +95,7 @@ const EventDetail = () => {
         <div className="flex flex-row">
           <div className="flex flex-col self-center">
             <div className="text-2xl font-medium">{user.name}</div>
-            <div className="mr-2">anurag.ravi@iitg.ac.in</div>
+            <div className="mr-2">{user.email}</div>
           </div>
           <img src={swc} alt="" className="rounded-full w-16" />
         </div>
@@ -94,27 +103,27 @@ const EventDetail = () => {
       {/* <====================== Event image =====================> */}
       <div className="rounded w-full mt-4 items-center">
         <img
-          src={img?baseURL+ item.image:event}
+          src={event.image!==null?baseURL+ event.image:event_img}
           alt=""
           className="rounded-2xl eventDetailImg shadow-xl"
         />
         <div className="flex flex-col timeStamp2 sm:timeStamp2sm md:timeStamp2md lg:timeStamp2lg">
           <div className="border-white rounded-t-xl text-center date11 sm:date11sm md:date11md lg:date11lg">
-            {month[parseInt(arr[1]) - 1]}
+            {month[parseInt(event.date.toString().split("-")[1]) - 1]}
           </div>
           <div className="border-white rounded-b-xl text-center font-medium date22 sm:date22sm md:date22md lg:date22lg">
-            {arr[2]}
+            {event.date.toString().split("-")[2]}
           </div>
         </div>
         <div className="flex flex-col nameStamp sm:nameStampsm md:nameStampmd lg:nameStamplg">
           <div className="font-medium text-2xl md:text-5xl lg:text-6xl lg:mb-1 text-white">
-            {item.title}
+            {event.title}
           </div>
           <div
             className="text-xl md:text-2xl lg:text-3xl pt-1 font-medium text-white"
             style={{ color: "#F7D9FF" }}
           >
-            by {item.club_name}
+            by {event.club_name}
           </div>
           <div
             className="text-xl md:text-2xl lg:text-3xl pt-1 font-medium text-white"
@@ -130,7 +139,7 @@ const EventDetail = () => {
           <div>
             <div className="text-4xl mb-4">Announcements</div>
             <ul>
-            {announcement.map((i) => {
+            {Array.from(event.announcement.fixed).map((i) => {
               len++;
               return <li key={i.id}>{i.announcement}</li>;
             })}
@@ -164,11 +173,11 @@ const EventDetail = () => {
           </div>
           <hr className="mt-5 w-full  " />
           <div className="text-3xl font-semibold mt-4">Recources</div>
-          {resources.map((i) => {
+          {Array.from(event.resources_upload).map((i) => {
               len++;
               return <ResourceCard key={i.id} resource={i} type="resource"/>;
             })}
-          {drive_links.map((i) => {
+          {Array.from(event.drive_links).map((i) => {
               len++;
               return <ResourceCard key={i.id} resource={i} type="drive"/>;
             })}
@@ -196,8 +205,8 @@ const EventDetail = () => {
               <path
                 d="M1.62207 10.878L6.62207 5.87796L1.62207 0.87796"
                 stroke="black"
-                stroke-opacity="0.33"
-                stroke-width="2"
+                strokeOpacity="0.33"
+                strokeWidth="2"
               />
             </svg>
           </div>

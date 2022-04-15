@@ -1,10 +1,11 @@
 import React, {useState} from 'react'
-import event from "../../assets/event.jpeg"
+import event_img from "../../assets/event.jpeg"
 import swc from "../../assets/codingclub.png"
 import { useSelector,useDispatch } from "react-redux";
-import client from "../../axios"
+import client, { baseURL } from "../../axios";
 import { add_event, refresh_token } from '../../redux/actions';
 import { useNavigate } from 'react-router-dom';
+import { getLogo } from "../../utilities/ClubLogo"
 
 const EventCard = (props) => {
     const dispatch = useDispatch();
@@ -45,8 +46,8 @@ const EventCard = (props) => {
     return (
         <div className='grid grid-cols-1 sm:grid-cols-2 shadow-lg rounded-2xl w-11/12 md:w-10/12 lg:w-full h-60 my-2'>
             <div className='rounded-tl-2xl rounded-tr-2xl sm:rounded-bl-2xl sm:rounded-tr-none'>
-                <img src={event} alt="" className='rounded-tl-2xl rounded-tr-2xl sm:rounded-bl-2xl sm:rounded-tr-none w-full h-60 object-fill'/>
-                <img src={swc} alt="" className='rounded-full eventClubLogo cursor-pointer hover:scale-105 duration-300'/>
+                <img src={item.image!==null?baseURL+ item.image:event_img} alt="" className='rounded-tl-2xl rounded-tr-2xl sm:rounded-bl-2xl sm:rounded-tr-none w-full h-60 object-cover'/>
+                <img src={getLogo(item.club_name)} alt="" className='rounded-full eventClubLogo cursor-pointer hover:scale-105 duration-300'/>
                 <div className="flex flex-col w-14 timeStamp">
                     <div className='border-white rounded-t-lg text-center date1'>
                         {month[parseInt(arr[1])-1]} </div>
@@ -60,14 +61,14 @@ const EventCard = (props) => {
                         <div onClick={eventDetail} className='text-lg font-medium cursor-pointer hover:scale-105 duration-300'>{item.title}</div>
                         <div className='text-gray-500'>By {item.club_name}</div>
                     </div>
-                    <div onClick={rsvpBtn} className='text-white w-24 h-8 text-sm rounded-full text-center pt-1.5 font-normal self-center cursor-pointer hover:scale-105 duration-300' style={{backgroundColor:'#6750A4'}}>
-                        {rsvp ? 'Undo RSVP':'RSVP'}
+                    <div onClick={rsvpBtn} className={`${rsvp ? "text-[#3D55BE] font-semibold" :"text-white font-normal"} w-24 h-8 text-sm rounded-full text-center pt-1.5 self-center cursor-pointer hover:scale-105 duration-300 ${rsvp ? "bg-gray-200" :"bg-[#3D55BE]"}`}>
+                        {rsvp ? 'Unregister':'Register'}
                     </div>
                 </div>
                 <div className='text-sm py-5 textDesc'>
                     {item.description}
                 </div>
-                <div className='text-white w-14 h-8 text-sm rounded-lg text-center pt-1.5 self-end cursor-pointer hover:scale-105 duration-300 font-medium relative' style={{backgroundColor:'#6FCF97'}}>
+                <div className={`${item.payment.paid ? "":"hidden"} text-white w-14 h-8 text-sm rounded-lg text-center pt-1.5 self-end cursor-pointer hover:scale-105 duration-300 font-medium relative`} style={{backgroundColor:'#6FCF97'}}>
                         Pay
                     </div>
             </div>

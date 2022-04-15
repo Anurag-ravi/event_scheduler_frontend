@@ -42,7 +42,7 @@ function App() {
 
         <Route path='/others' exact element={<PrivateRoute><Others /></PrivateRoute>} />
 
-        <Route path="/eventdetail/:event_id" element={<PrivateRoute><EventDetail/></PrivateRoute>}></Route>
+        <Route path="/eventdetail/:event_id" element={<EventDetail/>}></Route>
 
         <Route path="/eventupdate" exact element={<PrivateRoute><EventUpdation/></PrivateRoute>}></Route>
 

@@ -2,6 +2,7 @@ import React from 'react'
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Reminders from '../../components/Misc/Reminders';
+import Subscriptions from '../../components/Misc/Subscriptions';
 
 const Clubs = () => {
 
@@ -33,14 +34,13 @@ const Clubs = () => {
                 </div>
             </div>
             <div>
-            <Reminders />
-            <Reminders />
-            <Reminders />
-            <Reminders />
-            <Reminders />
-            <Reminders />
-            <Reminders />
-            <Reminders />
+            <Subscriptions subscribed={true}/>
+            <Subscriptions subscribed={false}/>
+            <Subscriptions subscribed={true}/>
+            <Subscriptions subscribed={false}/>
+            <Subscriptions subscribed={false}/>
+            <Subscriptions subscribed={true}/>
+            <Subscriptions subscribed={true}/>
 
             </div>
         </div>

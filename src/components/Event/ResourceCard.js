@@ -27,7 +27,7 @@ const ResourceCard = (props) => {
             className="text-white px-4 h-10 text-base rounded-full text-center pt-1.5 font-normal self-center cursor-pointer hover:scale-105 duration-300 flex flex-row gap-1"
             style={{ backgroundColor: "#3C55BF" }}
             href={url}
-            // target="_blank"
+            target="_blank"
             download>
             <img src={type==="resource"?download:link} className="w-5 relative -top-1" />
             {type==="resource"?"Download":"Open Link"}

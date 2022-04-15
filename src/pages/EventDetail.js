@@ -17,12 +17,14 @@ import { base_event } from "../redux/reducers/eventDetailReducer";
 
 const EventDetail = () => {
   let  { event_id }  = useParams();
-  const [event, setEvent] = useState(base_event)
+  const [event, setEvent] = useState(base_event);
+  // const [month, setMonth] = useState("mon")
   const [rsvp, setrsvp] = useState(false);
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.profile);
   const token = useSelector((state) => state.user.accessToken);
+  // const event = useSelector((state) => state.event);
   useEffect(() => {
     if(typeof(event_id) !== 'undefined'){
       client.get("/api/task/"+event_id+"/",{
@@ -32,13 +34,13 @@ const EventDetail = () => {
       })
       .then(res => {
         if(res.headers['jwt']) {dispatch(refresh_token(res.headers['jwt']));}
-        setEvent(res.data);
+        setEvent((base_event)=> res.data);
         console.log(res.data);
         setrsvp(res.data.rsvp_users.includes(user.profile_id))
       })
       .catch(err=>console.log(err))
     }
-  }, [])
+  }, [event])
   
   const month = [
     "Jan",
@@ -102,11 +104,13 @@ const EventDetail = () => {
       </div>
       {/* <====================== Event image =====================> */}
       <div className="rounded w-full mt-4 items-center">
+        <div className="imagebox">
         <img
           src={event.image!==null?baseURL+ event.image:event_img}
           alt=""
           className="rounded-2xl eventDetailImg shadow-xl"
-        />
+          />
+          </div>
         <div className="flex flex-col timeStamp2 sm:timeStamp2sm md:timeStamp2md lg:timeStamp2lg">
           <div className="border-white rounded-t-xl text-center date11 sm:date11sm md:date11md lg:date11lg">
             {month[parseInt(event.date.toString().split("-")[1]) - 1]}
@@ -134,14 +138,16 @@ const EventDetail = () => {
         </div>
       </div>
       {/* <====================== Event details =====================> */}
-      <div className="grid grid-cols-1 md:grid-cols-2 justify-between px-2 mt-6 pb-20 relative -top-40 sm:-top-48 md:-top-56">
+      <div className="relative -top-40 sm:-top-48 md:-top-56">
+        <div className="font-serif font-medium text-justify text-xl">{`"${event.description}"`}</div>
+      <div className="grid grid-cols-1 md:grid-cols-2 justify-between px-2 mt-6 pb-20">
         <div className="px-6 md:border-r-4">
           <div>
             <div className="text-4xl mb-4">Announcements</div>
             <ul>
             {Array.from(event.announcement.fixed).map((i) => {
               len++;
-              return <li key={i.id}>{i.announcement}</li>;
+              return <li key={i.id}>&#8226; {i.announcement}</li>;
             })}
             {len === 0 && <li>no announcements</li>}
             </ul>
@@ -163,10 +169,9 @@ const EventDetail = () => {
             </div>
             <div
               onClick={rsvpBtn}
-              className="text-white px-4 h-10 text-base rounded-full text-center pt-1.5 font-normal self-center cursor-pointer hover:scale-105 duration-300 flex flex-row gap-1"
-              style={{ backgroundColor: "#3C55BF" }}
+              className={`${rsvp ? "text-[#3D55BE] font-semibold" :"text-white font-normal"}   px-4 h-10 text-base rounded-full text-center pt-1.5 self-center cursor-pointer hover:scale-105 duration-300 flex flex-row gap-1 ${rsvp ? "bg-gray-200" :"bg-[#3D55BE]" } `}
             >
-              <img src={pen} className="w-5 relative -top-1" />
+              {/* <img src={pen} className="w-5 relative -top-1" /> */}
 
               {rsvp ? "Unregister" : "Register"}
             </div>
@@ -229,6 +234,7 @@ const EventDetail = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

@@ -6,6 +6,8 @@ import TabsListUnstyled from '@mui/base/TabsListUnstyled';
 import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import TabUnstyled, { tabUnstyledClasses } from '@mui/base/TabUnstyled';
+import SendIcon from '@mui/icons-material/Send';
+import Button from '@mui/material/Button';
 const Guests = () => {
     const gray = {
         50: '#F9FAFB',
@@ -78,30 +80,22 @@ const Guests = () => {
             <div className='flex flex-col'>
                 <Typography variant='h4'sx={{color:'#425466'}}>Guests</Typography>
             </div>
-            <div className='flex flex-row rounded-xl shadow-lg align-middle'>
-                <div className='flex flex-col'>
-                    <div className='flex flex-row mb-4'>
-                        <div>
-                        <Typography variant='h5'sx={{color:'#425466',height:'20px'}}>Invite Guests via Email ID </Typography>
-                        </div>
-                        <div>
-                        {/* <TabsUnstyled defaultValue={0}>
-                            <TabsList>
-                                <Tab>One</Tab>
-                                <Tab>Two</Tab>
-                            </TabsList>
-                            <TabPanel value={0}>First content</TabPanel>
-                            <TabPanel value={1}>Second content</TabPanel>
-                        </TabsUnstyled> */}
-                        </div>
-                    </div>
-                    <div className='w-full'>
-                        <input type="text" placeholder='Enter Name of Event'id="" className='rounded-sm w-full' style={{height:'50px',padding:'2px'}} />
-                    </div>
-                    <div style={{width:'80%'}}>
-                        <input type="text" placeholder='Enter Name of Event'id="" style={{height:'50px',padding:'2px'}} />
+            
+            <div className='flex flex-col'>
+                <div className='flex flex-row mb-4'>
+                    <div>
+                    <Typography variant='h5'sx={{color:'#425466',height:'20px'}}>Invite Guests via Email ID </Typography>
                     </div>
                 </div>
+                <div className='w-full'>
+                    <input type="text" className='rounded-sm shadow-xl w-full' placeholder='Enter Event Name' style={{border:'4px solid white',borderRadius: '6px',boxShadow:'black 0px 1px 5px',height:'50px',marginTop:'15px',outline:'none'}}/>
+                </div>
+                <div className='w-full'>
+                    <textarea className='rounded-sm shadow-xl w-full' placeholder='Enter Event Description' style={{border:'4px solid white',borderRadius: '6px',boxShadow:'black 0px 1px 5px',height:'100px',marginTop:'15px',outline:'none'}} />
+                </div>
+                <Button variant="contained" startIcon={<SendIcon />} sx={{borderRadius:'20px',paddingX:'20px',paddingY:'10px',backgroundColor:'#3D55BE',marginTop:'20px',width:'150px'}}>
+                    Send
+                </Button>
             </div>
         </div>
     );

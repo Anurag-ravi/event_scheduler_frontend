@@ -27,6 +27,7 @@ function Events(props) {
       .then(res => {
           if(res.headers['jwt']) {dispatch(refresh_token(res.headers['jwt']));}
           setEvents(res.data);
+          console.log(res.data)
       })
       .catch(err=>console.log(err))
     },[]);

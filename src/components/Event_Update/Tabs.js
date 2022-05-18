@@ -48,7 +48,7 @@ function a11yProps(index) {
   };
 }
 
-export default function FullWidthTabs() {
+export default function FullWidthTabs(props) {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -93,7 +93,7 @@ export default function FullWidthTabs() {
             <Guests />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-            < DetailsTab />
+            < DetailsTab event={props.event}/>
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
             <Announcements />

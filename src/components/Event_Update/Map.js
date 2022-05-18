@@ -10,7 +10,7 @@ function EventLocation(props) {
         longitude: Number(props.longitude),
         zoom: 15
       });
-      console.log("viewport is", viewport);
+      console.log("viewport is",props.latitude,props.longitude);
       return (
         <ReactMapGL
           {...viewport}

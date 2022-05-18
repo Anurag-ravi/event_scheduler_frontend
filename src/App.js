@@ -44,7 +44,7 @@ function App() {
 
         <Route path="/eventdetail/:event_id" element={<EventDetail/>}></Route>
 
-        <Route path="/eventupdate" exact element={<PrivateRoute><EventUpdation/></PrivateRoute>}></Route>
+        <Route path="/eventupdate/:event_id" element={<PrivateRoute><EventUpdation/></PrivateRoute>}></Route>
 
 
         <Route path="*" element={<center>Page Not Found</center>}></Route>
